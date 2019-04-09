@@ -6,14 +6,8 @@ jobs:
       # specify the version you desire here
       # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:3.6.3
-      - image: selenium/hub:3.141.59-iron
-      - image: selenium/node-firefox-debug:3.141.59-iron
-        environment:
-          - HUB_HOST: localhost
-      - image: selenium/node-chrome:3.141.59-iron
-        environment:
-          - HUB_HOST: localhost
-          - NODE_PORT: 5566
+      - image: selenium/standalone-firefox:3.141.59-iron
+          
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -44,15 +38,15 @@ jobs:
       #       - ./venv
       #     key: v1-dependencies-{{ checksum "requirements.txt" }}
 
-      - run:
-          name: waiting selenium grid to start
-          command: |
-            while ! curl -sSL "http://localhost:4444/wd/hub/status" 2>&1 \
-                    | jq -r '.value.ready' 2>&1 | grep "true" >/dev/null; do
-                echo 'Waiting for the Grid'
-                sleep 1
-            done
-            >&2 echo "Selenium Grid is up"
+      # - run:
+      #     name: waiting selenium grid to start
+      #     command: |
+      #       while ! curl -sSL "http://localhost:4444/wd/hub/status" 2>&1 \
+      #               | jq -r '.value.ready' 2>&1 | grep "true" >/dev/null; do
+      #           echo 'Waiting for the Grid'
+      #           sleep 1
+      #       done
+      #       >&2 echo "Selenium Grid is up"
       # run tests!
       # this example uses Django's built-in test-runner
       # other common Python testing frameworks include pytest and nose
@@ -63,11 +57,6 @@ jobs:
           command: |
             . venv/bin/activate
             ./run-tests.sh -b firefox -p Tests
-      - run:
-          name: run tests chrome
-          command: |
-            . venv/bin/activate
-            ./run-tests.sh -b chrome -p Tests
       
       # - store_artifacts:
       #     path: test-reports
