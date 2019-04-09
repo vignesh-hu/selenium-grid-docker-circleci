@@ -18,8 +18,8 @@ class TestGooglePage():
 
     def setup(self):
         global driver
-        driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver")
-        # driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub', desired_capabilities={"browserName": browser})
+        # driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver")
+        driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub', desired_capabilities={"browserName": browser})
         driver.get("https://www.google.com.ua/")
         
 
