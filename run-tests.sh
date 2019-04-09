@@ -1,21 +1,21 @@
 #!/bin/sh
 
-function help()
-{
-    echo "Usage: $0 [-b|--browser] <browser_name> [-p|--path] <path/to/tests> [-t|--test] <test_name> [-e|--environment] <local/ci>"
-    echo ""
-    echo "Options:"
-    echo "  -b, --browser 		set browser name"
-    echo "  -p, --path 			path to tests directory or directly to test file"
-    echo "  -t, --test 			name of test or name pattern"
-    echo "  -e, --environment		set environment local or CI (key is not necessary if CI)"
-    echo "  -h, --help 			display this help"
-    echo ""
-    echo "Examples:"
-    echo "  $0 -b chrome -p Tests/ -t test_login -e local"
-    echo "  $0 -b firefox -p Tests/"
-    exit 0
-}
+# function help()
+# {
+#     echo "Usage: $0 [-b|--browser] <browser_name> [-p|--path] <path/to/tests> [-t|--test] <test_name> [-e|--environment] <local/ci>"
+#     echo ""
+#     echo "Options:"
+#     echo "  -b, --browser 		set browser name"
+#     echo "  -p, --path 			path to tests directory or directly to test file"
+#     echo "  -t, --test 			name of test or name pattern"
+#     echo "  -e, --environment		set environment local or CI (key is not necessary if CI)"
+#     echo "  -h, --help 			display this help"
+#     echo ""
+#     echo "Examples:"
+#     echo "  $0 -b chrome -p Tests/ -t test_login -e local"
+#     echo "  $0 -b firefox -p Tests/"
+#     exit 0
+# }
 
 while test $# -gt 0; do
     case $1 in
@@ -43,10 +43,9 @@ while test $# -gt 0; do
 				ENV="$1"
 			fi
             ;;
-	    -h|--help)
-            help;;
-	    *) echo "Unknown option $1. Run with --help or -h for help."
-            exit 1;;
+	    *) echo "Unknown option $1."
+            exit 1
+            ;;
     esac
     shift
 done
