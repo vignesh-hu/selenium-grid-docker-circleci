@@ -48,7 +48,7 @@ jobs:
             . venv/bin/activate
             ./run-tests.sh -b chrome -p Tests
 
-workflow:
+workflows:
   version: 2
 
   my_workflow:
@@ -56,6 +56,26 @@ workflow:
       - build
       - build2
       
-      # - store_artifacts:
-      #     path: test-reports
-      #     destination: test-reports
+# workflows:
+#   version: 2
+#   build_accept_deploy:
+#     jobs:
+#       - build
+#       - acceptance_test_1:
+#           requires:
+#             - build
+#       - acceptance_test_2:
+#           requires:
+#             - build
+#       - acceptance_test_3:
+#           requires:
+#             - build
+#       - acceptance_test_4:
+#           requires:
+#             - build
+#       - deploy:
+#           requires:
+#             - acceptance_test_1
+#             - acceptance_test_2
+#             - acceptance_test_3
+#             - acceptance_test_4
