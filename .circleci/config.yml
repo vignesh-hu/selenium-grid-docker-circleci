@@ -3,27 +3,26 @@ version: 2
 jobs:
   build:
     docker:
-
       - image: circleci/python:3.6.3
       - image: selenium/standalone-firefox:3.141.59-iron
 
-      working_directory: ~/repo
+    working_directory: ~/repo
 
-      steps:
-        - checkout
+    steps:
+      - checkout
 
-        - run:
-            name: install dependencies
-            command: |
-              python3 -m venv venv
-              . venv/bin/activate
-              pip install -r requirements.txt
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
 
-        - run:
-            name: run tests firefox
-            command: |
-              . venv/bin/activate
-              ./run-tests.sh -b firefox -p Tests
+      - run:
+          name: run tests firefox
+          command: |
+            . venv/bin/activate
+            ./run-tests.sh -b firefox -p Tests
 
   build2: 
     docker:
@@ -31,23 +30,23 @@ jobs:
       - image: circleci/python:3.6.3
       - image: selenium/standalone-chrome:3.141.59-iron
 
-      working_directory: ~/repo
-      
-      steps:
-        - checkout
+    working_directory: ~/repo
+    
+    steps:
+      - checkout
 
-        - run:
-            name: install dependencies
-            command: |
-              python3 -m venv venv
-              . venv/bin/activate
-              pip install -r requirements.txt
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
 
-        - run:
-            name: run tests chrome
-            command: |
-              . venv/bin/activate
-              ./run-tests.sh -b chrome -p Tests
+      - run:
+          name: run tests chrome
+          command: |
+            . venv/bin/activate
+            ./run-tests.sh -b chrome -p Tests
 
 workflow:
   version: 2
