@@ -32,8 +32,8 @@ class TestGooglePage():
         google_logo = driver.find_element_by_xpath("//*[@id=\"hplogo\"]")
         assert self.is_element_exists(google_logo)
 
-    def test_Fail(self):
-        google_logo = driver.find_element_by_xpath("//*[@id=\"hplogo1\"]")
+    def test_Pass(self):
+        google_logo = driver.find_element_by_xpath("//*[@id=\"hplogo\"]")
         assert self.is_element_exists(google_logo)
 
     # Helper function
