@@ -18,13 +18,14 @@ class TestGooglePage():
 
     def setup(self):
         global driver
-        # driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver")
-        driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub', desired_capabilities={"browserName": browser})
+        driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver")
+        # driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub', desired_capabilities={"browserName": browser})
         driver.get("https://www.google.com.ua/")
         
 
     def teardown(self):
-        driver.close()
+        # driver.close()
+        driver.quit()
 
     # Tests
     def test_logo_is_present(self):
