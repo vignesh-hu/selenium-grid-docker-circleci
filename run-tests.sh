@@ -1,7 +1,7 @@
 #!/bin/sh
 
-function help() {
-    echo "Usage: $(basename "$0") [-b|--browser] <browser_name> [-p|--path] <path/to/tests> [-t|--test] <test_name> [-e|--environment] <local/ci>"
+function help {
+    echo "Usage: $0 [-b|--browser] <browser_name> [-p|--path] <path/to/tests> [-t|--test] <test_name> [-e|--environment] <local/ci>"
     echo ""
     echo "Options:"
     echo "  -b, --browser 		set browser name"
@@ -11,8 +11,8 @@ function help() {
     echo "  -h, --help 			display this help"
     echo ""
     echo "Examples:"
-    echo "  $(basename "$0") -b chrome -p Tests/ -t test_login -e local"
-    echo "  $(basename "$0") -b firefox -p Tests/"
+    echo "  $0 -b chrome -p Tests/ -t test_login -e local"
+    echo "  $0 -b firefox -p Tests/"
     exit 0
 }
 
