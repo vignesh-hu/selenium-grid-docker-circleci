@@ -1,6 +1,7 @@
 #!/bin/sh
 
-function help {
+function help()
+{
     echo "Usage: $0 [-b|--browser] <browser_name> [-p|--path] <path/to/tests> [-t|--test] <test_name> [-e|--environment] <local/ci>"
     echo ""
     echo "Options:"
