@@ -1,53 +1,44 @@
-# Python CircleCI 2.0 configuration file
 version: 2.0
 jobs:
-  "chrome-tests":
-    working_directory: ~/repo
+  setup_project:
     docker:
-      - image: circleci/python:3.6.3
-      - image: selenium/standalone-chrome:3.141.59-iron
-
+    - image: circleci/python:3.6.3
     steps:
-      - checkout
-
-      - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-
-      - run:
-          name: run tests chrome
-          command: |
-            . venv/bin/activate
-            ./run-tests.sh -b chrome -p Tests
-
-  "firefox-tests":
-    working_directory: ~/repo
+    - checkout
+    - run:
+        name: install dependencies
+        command: |
+          python3 -m venv venv
+          . venv/bin/activate
+          pip install -r requirements.txt
+  chrome-tests:
     docker:
-      - image: circleci/python:3.6.3
-      - image: selenium/standalone-firefox:3.141.59-iron
-
+    - image: circleci/python:3.6.3
+    - image: selenium/standalone-chrome:3.141.59-iron
     steps:
-      - checkout
-
-      - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-
-      - run:
-          name: run tests firefox
-          command: |
-            . venv/bin/activate
-            ./run-tests.sh -b firefox -p Tests
-
+    - run:
+        name: run tests chrome
+        command: |
+          . venv/bin/activate
+          ./run-tests.sh -b chrome -p Tests
+  firefox-tests:
+    docker:
+    - image: circleci/python:3.6.3
+    - image: selenium/standalone-firefox:3.141.59-iron
+    steps:
+    - run:
+        name: run tests firefox
+        command: |
+          . venv/bin/activate
+          ./run-tests.sh -b firefox -p Tests
 workflows:
   version: 2
-  build:
+  run_e2e_tests:
     jobs:
-      - "chrome-tests"
-      - "firefox-tests"
+      - setup_project
+      - chrome-tests:
+          requires:
+            - setup_project
+      - firefox-tests:
+          requires:
+          - setup_project
