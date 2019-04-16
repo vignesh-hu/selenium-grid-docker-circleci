@@ -28,6 +28,7 @@ jobs:
         name: run tests chrome
         command: |
           source env/bin/activate
+          export BROWSER="chrome"
           pytest -v Tests
           # ./run-tests.sh -b chrome -p Tests
   firefox-tests:
@@ -41,6 +42,7 @@ jobs:
         name: run tests firefox
         command: |
           source env/bin/activate
+          export BROWSER="firefox"
           pytest -v Tests
           # ./run-tests.sh -b firefox -p Tests
 workflows:
