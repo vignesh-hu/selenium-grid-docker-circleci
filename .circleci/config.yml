@@ -1,49 +1,45 @@
 version: 2.0
 
-references:
-
-  workspace_root: &workspace_root
-    /tmp/workspace
-    
-  attach_workspace: &attach_workspace
-    attach_workspace:
-      at: *workspace_root
-
 jobs:
   setup_project:
     docker:
     - image: circleci/python:3.6.3
     steps:
-    - *attach_workspace
+    - persist_to_workspace:
+      root: /tmp
+      paths:
+        - env/*
     - checkout
     - run:
         name: Install Python dependencies in a venv
         command: |
-          mkdir -p /tmp/workspace/env
-          python3 -m venv /tmp/workspace/env
-          source /tmp/workspace/env/bin/activate 
+          mkdir -p /tmp/env
+          python3 -m venv /tmp/env
+          source /tmp/env/bin/activate
           python -m pip install -r requirements.txt
   chrome-tests:
     docker:
     - image: circleci/python:3.6.3
     - image: selenium/standalone-chrome:3.141.59-iron
     steps:
-    - *attach_workspace
+    - attach_workspace:
+      at: /tmp
     - run:
         name: run tests chrome
         command: |
-          . /tmp/workspace/env/bin/activate
+          source /tmp/env/bin/activate
           ./run-tests.sh -b chrome -p Tests
   firefox-tests:
     docker:
     - image: circleci/python:3.6.3
     - image: selenium/standalone-firefox:3.141.59-iron
     steps:
-    - *attach_workspace
+    - attach_workspace:
+      at: /tmp
     - run:
         name: run tests firefox
         command: |
-          . /tmp/workspace/env/bin/activate
+          source /tmp/env/bin/activate
           ./run-tests.sh -b firefox -p Tests
 workflows:
   version: 2
