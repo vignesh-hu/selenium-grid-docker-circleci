@@ -43,6 +43,13 @@ while test $# -gt 0; do
 				ENV="$1"
 			fi
             ;;
+        -r|--report) 
+            shift
+            if test $# -gt 0; then
+                REPORT_PATH="$1"
+                REPORT_STRING="--html=$1/$BROWSER_report.html"
+            fi
+            ;;
 	    *) echo "Unknown option $1."
             exit 1
             ;;
@@ -53,6 +60,6 @@ done
 export BROWSER="$BROWSER_NAME"
 export ENVIRONMENT="$ENV"
 
-pytest -v "$TESTS_DIR_OR_FILE" "$TEST_TO_RUN"
+pytest -v "$TESTS_DIR_OR_FILE" "$TEST_TO_RUN" $REPORT_STRING
 
 exit 0

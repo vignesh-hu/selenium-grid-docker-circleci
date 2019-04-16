@@ -9,7 +9,8 @@ jobs:
         name: install dependencies
         command: |
           python3 -m venv venv
-          . venv/bin/activate
+          virtualenv venv
+          source venv/bin/activate
           pip install -r requirements.txt
   chrome-tests:
     docker:
