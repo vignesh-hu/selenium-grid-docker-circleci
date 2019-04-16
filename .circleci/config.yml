@@ -8,11 +8,9 @@ jobs:
     - run:
         name: Install Python dependencies in a venv
         command: |
-          pip install virtualenv
-          virtualenv venv
-          . venv/bin/activate
-          pip install --upgrade pip
-          pip install -r requirements.txt
+          python3 -m venv env
+          source ./env/bin/activate 
+          python -m pip install -r requirements.txt
   chrome-tests:
     docker:
     - image: circleci/python:3.6.3
@@ -21,7 +19,7 @@ jobs:
     - run:
         name: run tests chrome
         command: |
-          . venv/bin/activate
+          . env/bin/activate
           ./run-tests.sh -b chrome -p Tests
   firefox-tests:
     docker:
@@ -31,7 +29,7 @@ jobs:
     - run:
         name: run tests firefox
         command: |
-          . venv/bin/activate
+          . env/bin/activate
           ./run-tests.sh -b firefox -p Tests
 workflows:
   version: 2
