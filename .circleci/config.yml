@@ -29,8 +29,11 @@ jobs:
         command: |
           source env/bin/activate
           export BROWSER="chrome"
-          pytest -v Tests
+          pytest -v Tests --html=test-reports/report.html
           # ./run-tests.sh -b chrome -p Tests
+    - store_artifacts:
+          path: test-reports
+          destination: test-reports
   firefox-tests:
     docker:
     - image: circleci/python:3.7.2
@@ -43,8 +46,11 @@ jobs:
         command: |
           source env/bin/activate
           export BROWSER="firefox"
-          pytest -v Tests
+          pytest -v Tests --html=test-reports/report.html
           # ./run-tests.sh -b firefox -p Tests
+    - store_artifacts:
+          path: test-reports
+          destination: test-reports
 workflows:
   version: 2
   run_e2e_tests:
