@@ -18,7 +18,6 @@ class TestGooglePage():
         # driver.quit()
 
     def setup(self):
-        time.sleep(5)
         global driver
         # if "local" in environment:
         #     if "chrome" in browser:
@@ -38,13 +37,11 @@ class TestGooglePage():
 
     # Tests
     def test_logo_is_present(self):
-        time.sleep(5)
         google_logo = driver.find_element_by_xpath("//*[@id=\"hplogo\"]")
         assert self.is_element_exists(google_logo)
 
     def test_Pass(self):
-        time.sleep(5)
-        google_logo = driver.find_element_by_xpath("//*[@id=\"hplogo\"]")
+        google_logo = driver.find_element_by_xpath("//*[@id=\"hplogos\"]")
         assert self.is_element_exists(google_logo)
 
     # Helper function
