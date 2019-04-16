@@ -3,7 +3,7 @@ version: 2.0
 jobs:
   setup_project:
     docker:
-    - image: circleci/python:3.6.3
+    - image: circleci/python:3.7.2
     steps:
     - checkout
     - run:
@@ -19,7 +19,7 @@ jobs:
           - .
   chrome-tests:
     docker:
-    - image: circleci/python:3.6.3
+    - image: circleci/python:3.7.2
     - image: selenium/standalone-chrome:3.141.59-iron
     steps:
     - attach_workspace:
@@ -31,7 +31,7 @@ jobs:
           ./run-tests.sh -b chrome -p Tests
   firefox-tests:
     docker:
-    - image: circleci/python:3.6.3
+    - image: circleci/python:3.7.2
     - image: selenium/standalone-firefox:3.141.59-iron
     steps:
     - attach_workspace:
