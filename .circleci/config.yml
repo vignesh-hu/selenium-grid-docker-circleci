@@ -6,9 +6,9 @@ jobs:
     - image: circleci/python:3.6.3
     steps:
     - persist_to_workspace:
-      root: /tmp
-      paths:
-        - env/*
+        root: /tmp
+        paths:
+          - env/*
     - checkout
     - run:
         name: Install Python dependencies in a venv
@@ -23,7 +23,7 @@ jobs:
     - image: selenium/standalone-chrome:3.141.59-iron
     steps:
     - attach_workspace:
-      at: /tmp
+        at: /tmp
     - run:
         name: run tests chrome
         command: |
@@ -35,7 +35,7 @@ jobs:
     - image: selenium/standalone-firefox:3.141.59-iron
     steps:
     - attach_workspace:
-      at: /tmp
+        at: /tmp
     - run:
         name: run tests firefox
         command: |
