@@ -27,7 +27,7 @@ class TestGooglePage():
         #         driver = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver")
         # else:
         #     driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub', desired_capabilities={"browserName": browser})
-        driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub', desired_capabilities={"browserName": browser})
+        driver = webdriver.Remote(command_executor='http://54.85.68.235:4444/wd/hub', desired_capabilities={"browserName": browser})
 
         driver.get("https://www.google.com.ua/")
         
